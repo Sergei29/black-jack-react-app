@@ -22,14 +22,14 @@ export const getInitialHands = (deck) => {
 	const newPlayer = { cards: [], total: 0 };
 	const newDealer = { cards: [], total: 0 };
 
-	// first 2 cards for player:
+	// first: 2 cards for player:
 	for (let i = 0; i < 2; i++) {
 		const card = newDeck.pop();
 		newPlayer.cards.push(card);
 		newPlayer.total = calculateTotal(newPlayer.total, card);
 	}
 
-	// then 1 card for dealer:
+	// then: 1 card for dealer:
 	const cardForDealer = newDeck.pop();
 	newDealer.cards.push(cardForDealer);
 	newDealer.total = calculateTotal(newDealer.total, cardForDealer);
@@ -65,9 +65,7 @@ export const drawCardsForDealer = (deck, dealer, player) => {
 		return { newDeck, newDealer };
 	}
 
-	const riskLimit = Math.random() - 0.5 > 0 ? 15 : 11;
-
-	while (newDealer.total <= riskLimit) {
+	while (newDealer.total < player.total) {
 		const card = newDeck.pop();
 		newDealer.cards.push(card);
 		newDealer.total = calculateTotal(newDealer.total, card);

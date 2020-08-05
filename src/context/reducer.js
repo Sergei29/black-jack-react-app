@@ -1,11 +1,4 @@
 import actionsTypes from "./actions.types";
-import { deck } from "../data/gameData";
-import {
-	getInitialHands,
-	drawCardForPlayer,
-	drawCardsForDealer,
-	findTheWinner,
-} from "./utils";
 
 export const INITIAL_STATE = {
 	deck: [],
@@ -16,30 +9,16 @@ export const INITIAL_STATE = {
 	winner: null,
 };
 
-// makes sense later move all calculation game logic to actions
-
 export const reducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case actionsTypes.RESET_GAME:
-			const { newDeck, newPlayer, newDealer } = getInitialHands(deck);
-			return {
-				deck: newDeck,
-				player: newPlayer,
-				dealer: newDealer,
-				playerDone: false,
-				dealerDone: false,
-				winner: null,
-			};
+			return action.payload;
 
 		case actionsTypes.CARD_FOR_PLAYER:
-			const update = drawCardForPlayer(
-				action.payload.deck,
-				action.payload.player
-			);
 			return {
 				...state,
-				deck: update.newDeck,
-				player: update.newPlayer,
+				deck: action.payload.newDeck,
+				player: action.payload.newPlayer,
 			};
 
 		case actionsTypes.IS_PLAYER_DONE:
@@ -54,27 +33,20 @@ export const reducer = (state = INITIAL_STATE, action) => {
 				playerDone: true,
 			};
 
-		case actionsTypes.DRAW_CARDS_FOR_DEALER:
-			const data = drawCardsForDealer(
-				action.payload.deck,
-				action.payload.dealer,
-				action.payload.player
-			);
+		case actionsTypes.CARDS_FOR_DEALER:
 			return {
 				...state,
-				deck: data.newDeck,
-				dealer: data.newDealer,
+				deck: action.payload.newDeck,
+				dealer: action.payload.newDealer,
 				dealerDone: true,
 			};
+
 		case actionsTypes.FIND_WINNER:
-			const newWinner = findTheWinner(
-				action.payload.dealer,
-				action.payload.player
-			);
 			return {
 				...state,
-				winner: newWinner,
+				winner: action.payload,
 			};
+
 		default:
 			return state;
 	}

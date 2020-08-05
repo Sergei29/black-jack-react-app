@@ -5,9 +5,11 @@ import {
 	cardForPlayer,
 	isPlayerDone,
 	playerIsDone,
-	drawCardsForDealer,
+	cardsForDealer,
 	findWinner,
 } from "../../context/actions";
+//components:
+import StatusDisplay from "../../components/StatusDisplay/StatusDisplay.component";
 
 //styles:
 import {
@@ -18,7 +20,7 @@ import {
 
 const GameControls = () => {
 	const { state, dispatch } = useContext(store);
-	const { deck, dealer, player, playerDone, dealerDone } = state;
+	const { deck, dealer, player, playerDone, dealerDone, winner } = state;
 
 	// logging the updated state:
 	useEffect(() => {
@@ -31,7 +33,7 @@ const GameControls = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		// when card is served = check if total > 21
+		// when card is served = check if player.total > 21
 		if (!playerDone) {
 			dispatch(isPlayerDone(player));
 		}
@@ -39,7 +41,7 @@ const GameControls = () => {
 
 	useEffect(() => {
 		if (playerDone) {
-			dispatch(drawCardsForDealer(deck, dealer, player));
+			dispatch(cardsForDealer(deck, dealer, player));
 		}
 	}, [playerDone]);
 
@@ -82,8 +84,11 @@ const GameControls = () => {
 			</ControlButtonsContainer>
 			<CurrentStatusContainer>
 				<h2>Game Status: </h2>
-				<p>Player: {player.total}</p>
-				<p>Dealer: {dealer.total}</p>
+				<StatusDisplay
+					dealerTotal={dealer.total}
+					playerTotal={player.total}
+					winner={winner}
+				/>
 			</CurrentStatusContainer>
 		</>
 	);
