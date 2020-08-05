@@ -26,12 +26,6 @@ export const HitButtonContainer = styled.div`
 	}
 `;
 
-export const CurrentStatusContainer = styled.div`
-	p {
-		text-align: center;
-	}
-`;
-
 export const ControlButtonsContainer = styled.div`
 	display: flex;
 	justify-content: center;

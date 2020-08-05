@@ -15,7 +15,7 @@ export const getTheQuoteOfTheDay = (dealerTotal, playerTotal, winner) => {
 			case 2:
 				return "Wow!!! Party time !!!";
 			case 3:
-				return "Police ! Get him!!! Player was cheating!";
+				return "Police ! Get him!!! the Player is cheating!";
 			case 4:
 				return "Congratulations man! Some royal tip ?";
 			default:

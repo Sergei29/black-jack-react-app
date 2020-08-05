@@ -13,7 +13,6 @@ import StatusDisplay from "../../components/StatusDisplay/StatusDisplay.componen
 
 //styles:
 import {
-	CurrentStatusContainer,
 	ControlButtonsContainer,
 	HitButtonContainer,
 } from "./GameControls.styles";
@@ -22,18 +21,11 @@ const GameControls = () => {
 	const { state, dispatch } = useContext(store);
 	const { deck, dealer, player, playerDone, dealerDone, winner } = state;
 
-	// logging the updated state:
 	useEffect(() => {
-		console.log("state updated: ", state);
-	}, [state]);
-
-	useEffect(() => {
-		//on mount: reset game: dispatch action RESET_GAME
 		dispatch(resetGame());
 	}, [dispatch]);
 
 	useEffect(() => {
-		// when card is served = check if player.total > 21
 		if (!playerDone) {
 			dispatch(isPlayerDone(player));
 		}
@@ -52,17 +44,14 @@ const GameControls = () => {
 	}, [dealerDone]);
 
 	const hitClickHandler = () => {
-		//dispatch action CARD_FOR_PLAYER
 		dispatch(cardForPlayer(deck, player));
 	};
 
 	const stickClickHandler = () => {
-		//dispatch action PLAYER_DONE
 		dispatch(playerIsDone());
 	};
 
 	const resetClickHandler = () => {
-		//dispatch action RESET_GAME
 		dispatch(resetGame());
 	};
 
@@ -82,14 +71,11 @@ const GameControls = () => {
 					Reset Game
 				</button>
 			</ControlButtonsContainer>
-			<CurrentStatusContainer>
-				<h2>Game Status: </h2>
-				<StatusDisplay
-					dealerTotal={dealer.total}
-					playerTotal={player.total}
-					winner={winner}
-				/>
-			</CurrentStatusContainer>
+			<StatusDisplay
+				dealerTotal={dealer.total}
+				playerTotal={player.total}
+				winner={winner}
+			/>
 		</>
 	);
 };
