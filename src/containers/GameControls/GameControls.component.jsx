@@ -10,12 +10,8 @@ import {
 } from "../../context/actions";
 //components:
 import StatusDisplay from "../../components/StatusDisplay/StatusDisplay.component";
-
-//styles:
-import {
-	ControlButtonsContainer,
-	HitButtonContainer,
-} from "./GameControls.styles";
+import HitButton from "../../components/HitButton/HitButton.component";
+import ControlButtons from "../../components/ControlButtons/ControlButtons.component";
 
 const GameControls = () => {
 	const { state, dispatch } = useContext(store);
@@ -57,20 +53,17 @@ const GameControls = () => {
 
 	return (
 		<>
-			<HitButtonContainer>
-				<button onClick={hitClickHandler} disabled={playerDone}>
-					Hit
-				</button>
-			</HitButtonContainer>
-			<ControlButtonsContainer>
-				<button onClick={stickClickHandler} disabled={playerDone}>
-					Stick
-				</button>
+			<HitButton
+				clickHandler={hitClickHandler}
+				disabledCondition={playerDone}
+			/>
 
-				<button onClick={resetClickHandler} disabled={!playerDone}>
-					Reset Game
-				</button>
-			</ControlButtonsContainer>
+			<ControlButtons
+				stickHandler={stickClickHandler}
+				resetHandler={resetClickHandler}
+				disabledCondition={playerDone}
+			/>
+
 			<StatusDisplay
 				dealerTotal={dealer.total}
 				playerTotal={player.total}
