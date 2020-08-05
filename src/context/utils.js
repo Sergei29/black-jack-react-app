@@ -55,3 +55,21 @@ export const drawCardForPlayer = (currentDeck, player) => {
 
 	return { newDeck, newPlayer };
 };
+
+export const drawCardsForDealer = (deck, dealer) => {
+	let newDealer = {
+		...dealer,
+		cards: [...dealer.cards],
+	};
+	const newDeck = [...deck];
+
+	const riskLimit = Math.random() - 0.5 > 0 ? 15 : 11;
+
+	while (newDealer.total <= riskLimit) {
+		const card = newDeck.pop();
+		newDealer.cards.push(card);
+		newDealer.total = calculateTotal(newDealer.total, card);
+	}
+
+	return { newDeck, newDealer };
+};

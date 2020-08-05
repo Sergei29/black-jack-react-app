@@ -1,6 +1,9 @@
 const actionsTypes = {
 	RESET_GAME: "RESET_GAME",
 	CARD_FOR_PLAYER: "CARD_FOR_PLAYER",
+	IS_GAME_OVER: "IS_GAME_OVER",
+	PLAYER_DONE: "PLAYER_DONE",
+	DRAW_CARDS_FOR_DEALER: "DRAW_CARDS_FOR_DEALER",
 };
 
 export default actionsTypes;

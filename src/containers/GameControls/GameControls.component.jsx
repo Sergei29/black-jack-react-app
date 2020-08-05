@@ -1,6 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { store } from "../../context/store";
-import { resetGame, cardForPlayer } from "../../context/actions";
+import {
+	resetGame,
+	cardForPlayer,
+	isGameOver,
+	playerDone,
+	drawCardsForDealer,
+} from "../../context/actions";
 
 //styles:
 import {
@@ -11,31 +17,39 @@ import {
 
 const GameControls = () => {
 	const { state, dispatch } = useContext(store);
-	const { dealer, player } = state;
+	const { deck, dealer, player, gameOver } = state;
+
+	// logging the updated state:
+	useEffect(() => {
+		console.log("state updated: ", state);
+	}, [state]);
 
 	useEffect(() => {
 		//on mount: reset game:
 		dispatch(resetGame());
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
-		console.log("deck update > state :>> ", state);
-		// on state change for deck array length ( or maybe player and dealer total);
-		// if (state.gameOver) dispatch action FIND_WINNER that checks state.gameOver first then finds winner if gameOver=true
-		//
-		if (state.gameOver) {
-			console.log("game over: dispatch FIND_WINNER");
+		if (!gameOver) {
+			dispatch(isGameOver(player));
 		}
-	}, [state.deck]);
+	}, [deck]);
+
+	useEffect(() => {
+		if (gameOver) {
+			console.log("game over: dispatch DRAW_CARDS_FOR_DEALER");
+			dispatch(drawCardsForDealer(deck, dealer));
+		}
+	}, [gameOver]);
 
 	const hitClickHandler = () => {
 		//dispatch action CARD_FOR_PLAYER
-		// payload: {state.deck, player},
-		dispatch(cardForPlayer(state.deck, state.player));
+		dispatch(cardForPlayer(deck, player));
 	};
 
 	const stickClickHandler = () => {
 		//dispatch action PLAYER_DONE
+		dispatch(playerDone(deck, dealer));
 	};
 
 	const resetClickHandler = () => {
@@ -46,10 +60,14 @@ const GameControls = () => {
 	return (
 		<>
 			<HitButtonContainer>
-				<button onClick={hitClickHandler}>Hit</button>
+				<button onClick={hitClickHandler} disabled={gameOver}>
+					Hit
+				</button>
 			</HitButtonContainer>
 			<ControlButtonsContainer>
-				<button onClick={stickClickHandler}>Stick</button>
+				<button onClick={stickClickHandler} disabled={gameOver}>
+					Stick
+				</button>
 
 				<button onClick={resetClickHandler}>Reset Game</button>
 			</ControlButtonsContainer>
