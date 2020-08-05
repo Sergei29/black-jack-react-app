@@ -4,13 +4,15 @@ import {
 	getInitialHands,
 	drawCardForPlayer,
 	drawCardsForDealer,
+	findTheWinner,
 } from "./utils";
 
 export const INITIAL_STATE = {
 	deck: [],
 	player: { cards: [], total: 0 },
 	dealer: { cards: [], total: 0 },
-	gameOver: false,
+	playerDone: false,
+	dealerDone: false,
 	winner: null,
 };
 
@@ -24,7 +26,8 @@ export const reducer = (state = INITIAL_STATE, action) => {
 				deck: newDeck,
 				player: newPlayer,
 				dealer: newDealer,
-				gameOver: false,
+				playerDone: false,
+				dealerDone: false,
 				winner: null,
 			};
 
@@ -39,27 +42,38 @@ export const reducer = (state = INITIAL_STATE, action) => {
 				player: update.newPlayer,
 			};
 
-		case actionsTypes.IS_GAME_OVER:
+		case actionsTypes.IS_PLAYER_DONE:
 			return {
 				...state,
-				gameOver: action.payload,
+				playerDone: action.payload,
 			};
 
-		case actionsTypes.PLAYER_DONE:
+		case actionsTypes.PLAYER_IS_DONE:
 			return {
 				...state,
-				gameOver: true,
+				playerDone: true,
 			};
 
 		case actionsTypes.DRAW_CARDS_FOR_DEALER:
 			const data = drawCardsForDealer(
 				action.payload.deck,
-				action.payload.dealer
+				action.payload.dealer,
+				action.payload.player
 			);
 			return {
 				...state,
 				deck: data.newDeck,
 				dealer: data.newDealer,
+				dealerDone: true,
+			};
+		case actionsTypes.FIND_WINNER:
+			const newWinner = findTheWinner(
+				action.payload.dealer,
+				action.payload.player
+			);
+			return {
+				...state,
+				winner: newWinner,
 			};
 		default:
 			return state;

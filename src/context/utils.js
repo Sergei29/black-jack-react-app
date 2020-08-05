@@ -1,5 +1,3 @@
-// import { deck } from "../data/gameData";
-
 export const roles = Object.freeze({
 	dealer: "Dealer",
 	player: "Player",
@@ -56,12 +54,16 @@ export const drawCardForPlayer = (currentDeck, player) => {
 	return { newDeck, newPlayer };
 };
 
-export const drawCardsForDealer = (deck, dealer) => {
+export const drawCardsForDealer = (deck, dealer, player) => {
 	let newDealer = {
 		...dealer,
 		cards: [...dealer.cards],
 	};
 	const newDeck = [...deck];
+
+	if (player.total > 21) {
+		return { newDeck, newDealer };
+	}
 
 	const riskLimit = Math.random() - 0.5 > 0 ? 15 : 11;
 
@@ -72,4 +74,18 @@ export const drawCardsForDealer = (deck, dealer) => {
 	}
 
 	return { newDeck, newDealer };
+};
+
+export const findTheWinner = (dealer, player) => {
+	let newWinner = null;
+
+	if (dealer.total > 21) return roles.player;
+	if (player.total > 21) return roles.dealer;
+
+	if (dealer.total >= player.total) {
+		newWinner = roles.dealer;
+	} else {
+		newWinner = roles.player;
+	}
+	return newWinner;
 };

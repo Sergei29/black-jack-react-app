@@ -1,7 +1,7 @@
 /**
  * CARD_FOR_PLAYER
  * PLAYER_DONE
- * IS_GAME_OVER
+ * IS_PLAYER_DONE
  * DRAW_CARDS_FOR_DEALER
  * FIND_WINNER
  * RESET_GAME
@@ -34,23 +34,26 @@ export const resetGame = () => ({
 	type: actionsTypes.RESET_GAME,
 });
 
-export const findWinner = (playerTotal, dealerTotal) => ({});
-
 export const cardForPlayer = (deck, player) => ({
 	type: actionsTypes.CARD_FOR_PLAYER,
 	payload: { deck, player },
 });
 
-export const isGameOver = (player) => ({
-	type: actionsTypes.IS_GAME_OVER,
+export const isPlayerDone = (player) => ({
+	type: actionsTypes.IS_PLAYER_DONE,
 	payload: player.total > 21,
 });
 
-export const playerDone = () => ({
-	type: actionsTypes.PLAYER_DONE,
+export const playerIsDone = () => ({
+	type: actionsTypes.PLAYER_IS_DONE,
 });
 
-export const drawCardsForDealer = (deck, dealer) => ({
+export const drawCardsForDealer = (deck, dealer, player) => ({
 	type: actionsTypes.DRAW_CARDS_FOR_DEALER,
-	payload: { deck, dealer },
+	payload: { deck, dealer, player },
+});
+
+export const findWinner = (dealer, player) => ({
+	type: actionsTypes.FIND_WINNER,
+	payload: { dealer, player },
 });
