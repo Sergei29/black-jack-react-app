@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { store } from "../../context/store";
 import {
 	resetGame,
@@ -10,12 +10,8 @@ import {
 } from "../../context/actions";
 //components:
 import StatusDisplay from "../../components/StatusDisplay/StatusDisplay.component";
-
-//styles:
-import {
-	ControlButtonsContainer,
-	HitButtonContainer,
-} from "./GameControls.styles";
+import HitButton from "../../components/HitButton/HitButton.component";
+import ControlButtons from "../../components/ControlButtons/ControlButtons.component";
 
 const GameControls = () => {
 	const { state, dispatch } = useContext(store);
@@ -29,7 +25,7 @@ const GameControls = () => {
 		if (!playerDone) {
 			dispatch(isPlayerDone(player));
 		}
-	}, [deck]);
+	}, [player]);
 
 	useEffect(() => {
 		if (playerDone) {
@@ -43,34 +39,31 @@ const GameControls = () => {
 		}
 	}, [dealerDone]);
 
-	const hitClickHandler = () => {
+	const hitClickHandler = useCallback(() => {
 		dispatch(cardForPlayer(deck, player));
-	};
+	}, [deck, player, dispatch]);
 
-	const stickClickHandler = () => {
+	const stickClickHandler = useCallback(() => {
 		dispatch(playerIsDone());
-	};
+	}, [dispatch]);
 
-	const resetClickHandler = () => {
+	const resetClickHandler = useCallback(() => {
 		dispatch(resetGame());
-	};
+	}, [dispatch]);
 
 	return (
 		<>
-			<HitButtonContainer>
-				<button onClick={hitClickHandler} disabled={playerDone}>
-					Hit
-				</button>
-			</HitButtonContainer>
-			<ControlButtonsContainer>
-				<button onClick={stickClickHandler} disabled={playerDone}>
-					Stick
-				</button>
+			<HitButton
+				clickHandler={hitClickHandler}
+				disabledCondition={playerDone}
+			/>
 
-				<button onClick={resetClickHandler} disabled={!playerDone}>
-					Reset Game
-				</button>
-			</ControlButtonsContainer>
+			<ControlButtons
+				stickHandler={stickClickHandler}
+				resetHandler={resetClickHandler}
+				disabledCondition={playerDone}
+			/>
+
 			<StatusDisplay
 				dealerTotal={dealer.total}
 				playerTotal={player.total}

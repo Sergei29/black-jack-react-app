@@ -315,3 +315,22 @@ export const deck = [
 			"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Playing_card_diamond_A.svg/800px-Playing_card_diamond_A.svg.png",
 	},
 ];
+
+export const backgroundImage =
+	"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/A_face-up_deck_of_cards.jpg/1280px-A_face-up_deck_of_cards.jpg";
+
+export const phrases = {
+	dealer: ["House Always Wins!", "Better Luck Next Time!"],
+	player: [
+		"Lucky today! One more round ?",
+		"Take your money AND RUN !!!",
+		"Wow!!! Party time !!!",
+		"Police ! Get him!!! the Player is cheating!",
+		"Congratulations man!",
+	],
+};
+
+export const roles = Object.freeze({
+	dealer: "Dealer",
+	player: "Player",
+});

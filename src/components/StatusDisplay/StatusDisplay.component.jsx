@@ -13,7 +13,7 @@ const StatusDisplay = ({ dealerTotal, playerTotal, winner }) => {
 		const quote = getTheQuoteOfTheDay(dealerTotal, playerTotal, winner);
 		phrase = (
 			<PhraseContainer>
-				<h3>{winner} Won!</h3> <p>{quote}</p>{" "}
+				<h2>{winner} Won!</h2> <p>{quote}</p>{" "}
 			</PhraseContainer>
 		);
 	}
