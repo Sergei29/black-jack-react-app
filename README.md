@@ -4,7 +4,7 @@
 
 -   Development version can be cloned from github public repo.
 
-## Development version:
+# Development version:
 
 ( you will need Node.js and git installed locally; Chrome browser is recommended)
 
@@ -12,13 +12,20 @@
 -   cd black-jack-react-app
 -   npm i
 
-## The BlackJack React Application:
+# The BlackJack React Application:
 
 -   created with create-react-app
 -   basic styling accomplished with css-in-js `styled-components` library
 -   Global state managed on client side accomplished by using Context API/hooks
 -   Flux architectural pattern used for data flow: Component->Action->Reducer->Store->Component
 -   Directories:
+
+    -   /.circleci
+        config.yml - configuration for ci/circleci to run automation tests on remote branch update
+
+    -   /public
+
+    -   /src
 
     -   /components: re-usable presentational components (eg. Buttons, Card, CardsList etc.)
 
@@ -40,7 +47,10 @@
 
     -   /data: game related data (deck of playing cards etc. )
 
+# Additional Info
+
 -   unit testing: basic tests accomplished by using jest and enzyme library
+-   ci/circleci running unit tests on github repository branch update
 -   production version deployed to Heroku.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
