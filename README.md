@@ -1,3 +1,48 @@
+# black-jack-react-app
+
+-   Production version deployed to : https://black-jack-react-app.herokuapp.com/
+
+-   Development version can be cloned from github public repo.
+
+## Development version:
+
+( you will need Node.js and git installed locally; Chrome browser is recommended)
+
+-   git clone https://github.com/sergejs-basangovs-ingresso/black-jack-react-app.git
+-   cd black-jack-react-app
+-   npm i
+
+## The BlackJack React Application:
+
+-   created with create-react-app
+-   basic styling accomplished with css-in-js `styled-components` library
+-   Global state managed on client side accomplished by using Context API/hooks
+-   Flux architectural pattern used for data flow: Component->Action->Reducer->Store->Component
+-   Directories:
+
+    -   /components: re-usable presentational components (eg. Buttons, Card, CardsList etc.)
+
+    -   /containers: BlackJack, GameControls, Dealer, Player - components connected to context
+
+        -   /BlackJack: Application container, applying context provider HOC for children components
+        -   /GameControls: Operating the game and displaying game current output, connected to store (state)/ useContext hook
+        -   /Dealer: Dealer current status displayed / useContext hook (later can be changed into presentational component)
+        -   /Player: Player current status displayed / useContext hook (later can be changed into presentational component)
+
+    -   /context: store, store provider HOC, reducer, action types and actions
+
+        -   store: store initialized with createContext, store provider - StoreProvider HOC
+        -   reducer: reducer pure function returning new state based on fired actions
+        -   actions.types: types of actions required for app to calculate
+        -   actions: actions creator functions returning actions objects, if any calculation 'heavy lifting' needs - it is done here
+            so the action is sent to reducer with ready-to-process data.
+        -   utils: utility functions (eq. manipulate cards deck, shuffle deck, calculate points etc.)
+
+    -   /data: game related data (deck of playing cards etc. )
+
+-   unit testing: basic tests accomplished by using jest and enzyme library
+-   production version deployed to Heroku.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
