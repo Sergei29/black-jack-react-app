@@ -1,7 +1,4 @@
-export const roles = Object.freeze({
-	dealer: "Dealer",
-	player: "Player",
-});
+import { roles } from "../data/gameData";
 
 export const shuffleDeck = (deck) => [...deck].sort(() => Math.random() - 0.5);
 

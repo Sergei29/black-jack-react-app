@@ -1,11 +1,11 @@
 import { deck } from "../data/gameData";
+import actionsTypes from "./actions.types";
 import {
 	getInitialHands,
 	drawCardForPlayer,
 	drawCardsForDealer,
 	findTheWinner,
 } from "./utils";
-import actionsTypes from "./actions.types";
 
 export const resetGame = () => {
 	const newState = {

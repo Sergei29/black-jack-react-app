@@ -16,4 +16,4 @@ const Dealer = () => {
 	);
 };
 
-export default Dealer;
+export default React.memo(Dealer);

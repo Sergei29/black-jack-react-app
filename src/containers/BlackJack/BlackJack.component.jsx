@@ -4,20 +4,20 @@ import { StoreProvider } from "../../context/store";
 import Player from "../Player/Player.component";
 import Dealer from "../Dealer/Dealer.component";
 import GameControls from "../GameControls/GameControls.component";
+import Footer from "../../components/Footer/Footer.component";
 //styles:
 import { BlackJackContainer } from "./BlackJack.styles";
 
-const BlackJack = () => {
-	return (
+const BlackJack = () => (
+	<BlackJackContainer>
+		<h1>BlackJack</h1>
 		<StoreProvider>
-			<BlackJackContainer>
-				<h1>BlackJack game</h1>
-				<GameControls />
-				<Dealer />
-				<Player />
-			</BlackJackContainer>
+			<GameControls />
+			<Dealer />
+			<Player />
 		</StoreProvider>
-	);
-};
+		<Footer />
+	</BlackJackContainer>
+);
 
 export default BlackJack;

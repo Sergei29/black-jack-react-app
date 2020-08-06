@@ -7,11 +7,11 @@ import { CardsListContainer } from "./CardsList.styles";
 const CardsList = ({ cards }) => {
 	return (
 		<CardsListContainer>
-			{cards.map(({ rank, color, imgUrl }) => (
-				<Card key={rank + color} imgUrl={imgUrl} />
+			{cards.map((card) => (
+				<Card key={card.rank + card.color} {...card} />
 			))}
 		</CardsListContainer>
 	);
 };
 
-export default CardsList;
+export default React.memo(CardsList);

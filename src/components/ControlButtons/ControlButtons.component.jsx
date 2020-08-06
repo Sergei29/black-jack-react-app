@@ -16,4 +16,4 @@ const ControlButtons = ({ stickHandler, resetHandler, disabledCondition }) => {
 	);
 };
 
-export default ControlButtons;
+export default React.memo(ControlButtons);

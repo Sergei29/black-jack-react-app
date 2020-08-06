@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const PhraseContainer = styled.div`
-	h3 {
+	h2 {
 		color: red;
 		text-align: center;
 	}
 	p {
 		color: green;
+		font-weight: bold;
 	}
 `;
 

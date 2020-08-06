@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const HitButtonContainer = styled.div`
+	position: relative;
 	width: 100%;
 	height: 200px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/A_face-up_deck_of_cards.jpg/1280px-A_face-up_deck_of_cards.jpg");
-	background-size: cover;
 	button {
+		z-index: 10;
 		width: 150px;
 		height: 150px;
 		background-color: rgba(0, 0, 0, 0.5);
@@ -24,4 +24,15 @@ export const HitButtonContainer = styled.div`
 			color: red;
 		}
 	}
+`;
+
+export const ImageContainer = styled.div`
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-image: url(${(props) => props.imgUrl});
+	background-size: cover;
+	z-index: 1;
 `;

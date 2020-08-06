@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { store } from "../../context/store";
 import {
 	resetGame,
@@ -25,7 +25,7 @@ const GameControls = () => {
 		if (!playerDone) {
 			dispatch(isPlayerDone(player));
 		}
-	}, [deck]);
+	}, [player]);
 
 	useEffect(() => {
 		if (playerDone) {
@@ -39,17 +39,17 @@ const GameControls = () => {
 		}
 	}, [dealerDone]);
 
-	const hitClickHandler = () => {
+	const hitClickHandler = useCallback(() => {
 		dispatch(cardForPlayer(deck, player));
-	};
+	}, [deck, player, dispatch]);
 
-	const stickClickHandler = () => {
+	const stickClickHandler = useCallback(() => {
 		dispatch(playerIsDone());
-	};
+	}, [dispatch]);
 
-	const resetClickHandler = () => {
+	const resetClickHandler = useCallback(() => {
 		dispatch(resetGame());
-	};
+	}, [dispatch]);
 
 	return (
 		<>

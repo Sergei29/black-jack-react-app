@@ -1,12 +1,14 @@
 import React from "react";
+//styles:
 import { CardContainer } from "./Card.styles";
 
-const Card = ({ imgUrl }) => {
+const Card = ({ imgUrl, rank, color }) => {
+	const title = `card ${rank} of ${color}`;
 	return (
 		<CardContainer>
-			<img src={imgUrl} alt="card" />
+			<img src={imgUrl} alt={title} title={title} />
 		</CardContainer>
 	);
 };
 
-export default Card;
+export default React.memo(Card);
