@@ -1,5 +1,7 @@
 # to Deploy on Heroku:
 
+// some changes here...
+
 # black-jack-react-app
 
 - Production version deployed to : https://black-jack-react-app.herokuapp.com/
