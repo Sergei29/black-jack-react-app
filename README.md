@@ -1,13 +1,13 @@
 # to Deploy on Heroku:
 
-- heroku git:remote -a black-jack-react-app
-- git add .
-- git commit -m "my commit message"
-- git push heroku master
+- `heroku git:remote -a black-jack-react-app`
+- `git add .`
+- `git commit -m "my commit message"`
+- `git push heroku master`
 
 # black-jack-react-app
 
-- Production version deployed to : https://black-jack-react-app.herokuapp.com/
+- Production version deployed to : `https://black-jack-react-app.herokuapp.com/`
 
 - Development version can be cloned from github public repo.
 
@@ -15,9 +15,9 @@
 
 ( you will need Node.js and git installed locally; Chrome browser is recommended)
 
-- git clone https://github.com/sergejs-basangovs-ingresso/black-jack-react-app.git
-- cd black-jack-react-app
-- npm i
+- `git clone https://github.com/Sergei29/black-jack-react-app.git`
+- `cd black-jack-react-app`
+- `npm i`
 
 # The BlackJack React Application:
 
