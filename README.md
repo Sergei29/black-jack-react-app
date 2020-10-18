@@ -1,6 +1,9 @@
 # to Deploy on Heroku:
 
-// some changes here...
+- heroku git:remote -a black-jack-react-app
+- git add .
+- git commit -m "my commit message"
+- git push heroku master
 
 # black-jack-react-app
 
