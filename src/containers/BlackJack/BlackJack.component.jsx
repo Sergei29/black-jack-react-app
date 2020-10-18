@@ -8,16 +8,20 @@ import Footer from "../../components/Footer/Footer.component";
 //styles:
 import { BlackJackContainer } from "./BlackJack.styles";
 
+/**
+ * @description functional component
+ * @returns {JSX} component markup
+ */
 const BlackJack = () => (
-	<BlackJackContainer>
-		<h1>BlackJack</h1>
-		<StoreProvider>
-			<GameControls />
-			<Dealer />
-			<Player />
-		</StoreProvider>
-		<Footer />
-	</BlackJackContainer>
+  <BlackJackContainer>
+    <h1>BlackJack</h1>
+    <StoreProvider>
+      <GameControls />
+      <Dealer />
+      <Player />
+    </StoreProvider>
+    <Footer />
+  </BlackJackContainer>
 );
 
 export default BlackJack;
